@@ -1,0 +1,24 @@
+{
+    "name": "agenciafmd/laravel-pwa",
+    "description": "PWA for Everyone",
+    "authors": [
+        {
+            "name": "Irineu Martins Junior",
+            "email": "irineu@fmd",
+            "homepage": "http://fmd.ag/",
+            "role": "Developer"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Agenciafmd\\Pwa\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Agenciafmd\\Pwa\\Providers\\PwaServiceProvider"
+            ]
+        }
+    }
+}

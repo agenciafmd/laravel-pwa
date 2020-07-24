@@ -1,0 +1,25 @@
+.pwa-a2hs-install {
+    /*background: #000000;*/
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    width: 100%;
+    bottom: -110px;
+    padding: 0 10px 0 2px;
+    min-height: 96px;
+    transition: .5s;
+    z-index: 999;
+    box-shadow: 0 8px 11px #000
+}
+
+.pwa-a2hs-button {
+    height: 31px;
+    width: 95px;
+    outline: 0;
+    font-size: 12px;
+    text-transform: uppercase;
+    background-color: #fff;
+    border-radius: 15.5px;
+    border-width: 0
+}
