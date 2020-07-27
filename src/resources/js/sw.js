@@ -4,16 +4,16 @@ self.addEventListener('install', function (event) {
 });
 
 var preLoad = function () {
-    console.log('[PWA Builder] Install Event processing');
+    // console.log('[PWA Builder] Install Event processing');
     return caches.open(CACHE_NAME).then(function (cache) {
-        console.log('[PWA Builder] Cached index and offline page during Install');
+        // console.log('[PWA Builder] Cached index and offline page during Install');
         return cache.addAll(urlsToCache);
     });
 }
 
 self.addEventListener('fetch', function (event) {
-    console.log('[PWA Builder] The service worker is serving the asset.');
-    var clone = event.request.clone();
+    // console.log('[PWA Builder] The service worker is serving the asset.');
+    let clone = event.request.clone();
     if (clone.method !== 'GET') {
         return false;
     }
@@ -24,7 +24,7 @@ self.addEventListener('fetch', function (event) {
     event.waitUntil(addToCache(event.request));
 });
 
-var checkResponse = function (request) {
+let checkResponse = function (request) {
     return new Promise(function (fulfill, reject) {
         fetch(request).then(function (response) {
             if (response.status !== 404) {
@@ -36,16 +36,16 @@ var checkResponse = function (request) {
     });
 };
 
-var addToCache = function (request) {
+let addToCache = function (request) {
     return caches.open(CACHE_NAME).then(function (cache) {
         return fetch(request).then(function (response) {
-            console.log('[PWA Builder] add page to offline ' + response.url)
+            // console.log('[PWA Builder] add page to offline ' + response.url)
             return cache.put(request, response);
         });
     });
 };
 
-var returnFromCache = function (request) {
+let returnFromCache = function (request) {
     return caches.open(CACHE_NAME).then(function (cache) {
         return cache.match(request).then(function (matching) {
             if (!matching || matching.status == 404) {

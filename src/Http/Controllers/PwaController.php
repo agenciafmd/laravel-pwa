@@ -27,6 +27,7 @@ class PwaController
         $view = [
             'name' => config('pwa.sw.name'),
             'files' => config('pwa.sw.files'),
+            'sw' => file_get_contents(__DIR__ . '/../../resources/js/sw.js'),
         ];
 
         return response(view('agenciafmd/pwa::sw', $view)->render())->header('Content-Type', 'application/javascript');
