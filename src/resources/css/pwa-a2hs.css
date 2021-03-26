@@ -1,25 +1,108 @@
-.pwa-a2hs-install {
-    /*background: #000000;*/
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+/*! CSS Used from: https://s3.glbimg.com/v1/AUTH_b002e0039b9f46a5a4a94ff667d31e2d/assets/dist/1c8d70b0211fb0f28fc6d93c86b6eb1f.css */
+.push-web-notification {
     position: fixed;
     width: 100%;
-    bottom: -110px;
-    padding: 0 10px 0 2px;
-    min-height: 96px;
-    transition: .5s;
-    z-index: 999;
-    box-shadow: 0 8px 11px #000
+    height: auto;
+    padding: 1.5rem 1.5rem 1.125rem;
+    bottom: 0;
+    right: 0;
+    z-index: 1000;
+    background-color: #fff;
+    box-shadow: 0 -2px 7px 0 rgba(204, 204, 204, 0.51);
+    transition: 1s all;
+    -webkit-font-smoothing: antialiased;
 }
 
-.pwa-a2hs-button {
-    height: 31px;
-    width: 95px;
-    outline: 0;
-    font-size: 12px;
-    text-transform: uppercase;
+@media screen and (min-width: 640px) {
+    .push-web-notification {
+        height: 4.5rem;
+        padding: 1.0625rem 2.5rem .9375rem 2.5rem;
+    }
+}
+
+.push-web-notification__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+@media screen and (min-width: 640px) {
+    .push-web-notification__container {
+        flex-direction: row;
+        justify-content: space-between;
+        padding-right: .1875rem;
+    }
+}
+
+.push-web-notification__text {
+    font-family: opensans, "Helvetica Neue", Arial, sans-serif;
+    font-size: 1rem;
+    font-stretch: normal;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1.44;
+    letter-spacing: -0.83px;
+    margin-bottom: 1rem;
+}
+
+@media screen and (min-width: 640px) {
+    .push-web-notification__text {
+        line-height: 1.75;
+        margin-top: .3125rem;
+        margin-bottom: .4375rem;
+    }
+}
+
+.push-web-notification__text b {
+    font-weight: bold;
+}
+
+.push-web-notification__button {
+    display: flex;
+    justify-content: space-between;
+}
+
+@media screen and (min-width: 640px) {
+    .push-web-notification__button {
+        width: 19.5rem;
+    }
+}
+
+.push-web-notification__button button {
+    font-family: opensans, "Helvetica Neue", Arial, sans-serif;
+    font-size: 1rem;
+    font-stretch: normal;
+    font-style: normal;
+    font-weight: normal;
+    font-weight: 600;
+    line-height: 0.88;
+    letter-spacing: normal;
+    text-align: center;
+    border-radius: .125rem;
+    cursor: pointer;
+    width: 9rem;
+    height: 2.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 1s all;
+}
+
+.push-web-notification__button button span {
+    margin-right: .3125rem;
+}
+
+.push-web-notification__button button svg path {
+    transition: 1s all;
+}
+
+.push-web-notification__button--accept {
+    /*border: solid 1px #c4170c;*/
+    /*background-color: #c4170c;*/
+    /*color: #fff;*/
+}
+
+.push-web-notification__button--reject {
+    border: solid 1px #ccc;
     background-color: #fff;
-    border-radius: 15.5px;
-    border-width: 0
 }

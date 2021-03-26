@@ -12,13 +12,13 @@
     "gcm_sender_id_comment": "",
     "icons": [
         {
-            "src": "/images/pwa/icon-192x192.png",
+            "src": "vendor/laravel-pwa/images/icon-192x192.png",
             "sizes": "192x192",
             "type": "image/png",
             "purpose": "any maskable"
         },
         {
-            "src": "/images/pwa/icon-512x512.png",
+            "src": "vendor/laravel-pwa/images/icon-512x512.png",
             "sizes": "512x512",
             "type": "image/png",
             "purpose": "any maskable"

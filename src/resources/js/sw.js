@@ -4,23 +4,22 @@ self.addEventListener('install', function (event) {
 });
 
 var preLoad = function () {
-    // console.log('[PWA Builder] Install Event processing');
     return caches.open(CACHE_NAME).then(function (cache) {
-        // console.log('[PWA Builder] Cached index and offline page during Install');
-        return cache.addAll(urlsToCache);
+        return cache.addAll(CACHE_FILES);
     });
 }
 
 self.addEventListener('fetch', function (event) {
-    // console.log('[PWA Builder] The service worker is serving the asset.');
     let clone = event.request.clone();
     if (clone.method !== 'GET') {
         return false;
     }
+
     event.respondWith(checkResponse(clone).catch(function () {
             return returnFromCache(event.request)
         }
     ));
+
     event.waitUntil(addToCache(event.request));
 });
 
@@ -28,19 +27,26 @@ let checkResponse = function (request) {
     return new Promise(function (fulfill, reject) {
         fetch(request).then(function (response) {
             if (response.status !== 404) {
-                fulfill(response)
+                fulfill(response);
             } else {
-                reject()
+                reject();
             }
-        }, reject)
+        }).catch(function (response) {
+            if (!request.url.endsWith(START_URL)) {
+                reject();
+            }
+
+            console.log(response);
+        });
     });
 };
 
 let addToCache = function (request) {
     return caches.open(CACHE_NAME).then(function (cache) {
         return fetch(request).then(function (response) {
-            // console.log('[PWA Builder] add page to offline ' + response.url)
             return cache.put(request, response);
+        }).catch(function (response) {
+            console.log(response);
         });
     });
 };
@@ -48,11 +54,15 @@ let addToCache = function (request) {
 let returnFromCache = function (request) {
     return caches.open(CACHE_NAME).then(function (cache) {
         return cache.match(request).then(function (matching) {
-            if (!matching || matching.status == 404) {
-                return cache.match('/offline')
-            } else {
-                return matching
+            if (!matching && navigator.onLine) {
+                return false;
             }
+
+            if (!matching) {
+                return cache.match(OFFLINE_URL);
+            }
+
+            return matching;
         });
     });
 };

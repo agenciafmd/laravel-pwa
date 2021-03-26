@@ -1,5 +1,5 @@
 @extends('errors.minimal')
 
-@section('title', config('pwa.messages.offline.title'))
-@section('code', config('pwa.messages.offline.code'))
-@section('message', config('pwa.messages.offline.message'))
+@section('title', config('laravel-pwa.offline.title'))
+@section('code', config('laravel-pwa.offline.code'))
+@section('message', config('laravel-pwa.offline.message'))

@@ -2,10 +2,17 @@
     console.log = function() {};
 @endif
 
-//This is the service worker with the combined offline experience (Offline page + Offline copy of pages)
-var CACHE_NAME = '{{ $name }}-{{ date("YmdHis", filemtime(public_path('mix-manifest.json'))) }}';
-var urlsToCache = [
-    '{!! implode("', '", $files) !!}'
+{{--//This is the service worker with the combined offline experience (Offline page + Offline copy of pages)--}}
+
+let CACHE_NAME = '{{ $name }}';
+
+let CACHE_FILES = [
+    '{!! implode("', '", $cacheFiles) !!}',
+    '{{ $offlineUrl }}',
 ];
+
+const START_URL = '{{ $startUrl }}'
+const OFFLINE_URL = '{{ $offlineUrl }}';
+const NOT_FOUND_URL = '{{ $notFoundUrl }}';
 
 {!! $sw !!}
